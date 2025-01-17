@@ -6,19 +6,211 @@ app.use(express.json());
 
 app.use(cors());
 
-const categories=[
-    {id: 1, name: 'Electronics', items: ['Laptops', 'Mobile Phones', 'TVs']},
-    {id: 2, name: 'Clothing', items: ['Shirts', 'Pants', 'Jackets']},
-    {id: 3, name: 'Home & Garden', items: ['Furniture', 'Gardening Tools', 'Patio & Outdoor Supplies']},
-    {id: 4, name: 'Sports & Outdoors', items: ['Soccer', 'Basketball', 'Golf']}
- 
-]
+
+const books = [
+  {
+    id: 1,
+    title: "Book 1",
+    author: "Author 1",
+    category_id: 1,
+    tipe:'file',
+    catalog_id: 1,
+    file: null,
+    img: "https://tovar.uz/images/company/444/tovar/8584/o_1_5ef850d429d3f.jpg",
+    catalog:'Badiy',
+    lang:"Uz",
+    description: "This is a book about electronics",
+  },
+  {
+    id: 2,
+    title: "Book 2",
+    author: "Author 2",
+    category_id: 2,
+    tipe:'audio',
+    catalog_id: 1,
+    file: null,
+    img: "https://tovar.uz/images/company/444/tovar/8584/o_1_5ef850d429d3f.jpg",
+    catalog:'Sheriyat',
+    lang:"Rus",
+    description: "This is a book about clothing",
+  },
+  {
+    id: 3,
+    title: "Book 3",
+    author: "Author 3",
+    category_id: 3,
+    tipe:'file',
+    catalog_id: 1,
+    file: null,
+    img: "https://tovar.uz/images/company/444/tovar/8584/o_1_5ef850d429d3f.jpg",
+    catalog:'Mashxat',
+    lang:"Eng",
+    description: "This is a book about home and garden",
+  },
+  {
+    id: 4,
+    title: "Book 4",
+    author: "Author 4",
+    category_id: 1,
+    tipe:'audio',
+    catalog_id: 2,
+    file: null,
+    img: "https://tovar.uz/images/company/444/tovar/8584/o_1_5ef850d429d3f.jpg",
+    catalog:'Shaxmat',
+    lang:"Uz",
+    description: "This is a book about sports and outdoors"
+  },
+  {
+    id: 5,
+    title: "Book 5",
+    author: "Author 5",
+    category_id: 1,
+    tipe:'file',
+    catalog_id: 2,
+    file: null,
+    img: "https://tovar.uz/images/company/444/tovar/8584/o_1_5ef850d429d3f.jpg",
+    catalog:'Shaxmat',
+    lang:"Rus",
+    description: "This is a book about sports and outdoors"
+  },
+  {
+    id: 6,
+    title: "Book 6",
+    author: "Author 6",
+    category_id: 2,
+    tipe:'audio',
+    catalog_id: 3,
+    file: null,
+    img: "https://tovar.uz/images/company/444/tovar/8584/o_1_5ef850d429d3f.jpg",
+    catalog:'Shaxmat',
+    lang:"Eng",
+    description: "This is a book about sports and outdoors"
+  },
+  {
+    id: 7,
+    title: "Book 7",
+    author: "Author 7",
+    category_id: 3,
+    tipe:'file',
+    catalog_id: 4,
+    file: null,
+    img: "https://tovar.uz/images/company/444/tovar/8584/o_1_5ef850d429d3f.jpg",
+    catalog:'Mashxat',
+    lang:"Uz",
+    description: "This is a book about home and garden"
+  },
+  {
+    id: 8,
+    title: "Book 8",
+    author: "Author 8",
+    category_id: 2,
+    tipe:'audio',
+    catalog_id: 4,
+    file: null,
+    img: "https://tovar.uz/images/company/444/tovar/8584/o_1_5ef850d429d3f.jpg",
+    catalog:'Sheriyat',
+    lang:"Rus",
+    description: "This is a book about clothing"
+  },
+  {
+    id: 9,
+    title: "Book 9",
+    author: "Author 9",
+    category_id: 2,
+    tipe:'file',
+    catalog_id: 4,
+    file: null,
+    img: "https://tovar.uz/images/company/444/tovar/8584/o_1_5ef850d429d3f.jpg",
+    catalog:'Badiy',
+    lang:"Uz",
+    description: "This is a book about electronics"
+  }
+];
+
+const categories = [
+  {
+    id: 1,
+    name: "O'zbek adabiyoti",
+    books: books.filter(
+      (item) => item.category_id === 1 && item.tipe === "file"
+    ).length,
+    audiobooks: books.filter(
+      (item) => item.category_id === 1 && item.tipe === "audio"
+    ).length,
+    img: "https://api.kitob.itsm.uz/data/genres/cover/3.png",
+  },
+  {
+    id: 2,
+    name: "Jahon adabiyoti",
+    books: books.filter(
+      (item) => item.category_id === 2 && item.tipe === "file"
+    ).length,
+    audiobooks: books.filter(
+      (item) => item.category_id === 2 && item.tipe === "audio"
+    ).length,
+    img: "https://api.kitob.itsm.uz/data/genres/cover/12.png",
+  },
+  {
+    id: 3,
+    name: "Bolalar uchun",
+    books: books.filter(
+      (item) => item.category_id === 3 && item.tipe === "file"
+    ).length,
+    audiobooks: books.filter(
+      (item) => item.category_id === 3 && item.tipe === "audio"
+    ).length,
+    img: "https://api.kitob.itsm.uz/data/genres/cover/236.png",
+  },
+];
 
 const admins=[
     {id: 1, username: 'Muhsinbek', seconname:'Mirzamatov', password: '1212', token:'123'},
     {id: 2, username: 'Naim', seconname:'Kamalilov', password: '1212', token:'456'},
     {id: 3, username: 'Zara', seconname:'Rahmanova', password: '1212', token:'789'}
 ]
+
+const catalog = [
+  {
+    id: 1,
+    title: "Sheriyat",
+    books: books.filter((item) => item.catalog_id === 1).length,
+    audiobooks: books.filter(
+      (item) => item.catalog_id === 1 && item.tipe === "audio"
+    ).length,
+    book: books.filter((item) => item.catalog_id === 1 && item.tipe === "file")
+      .length,
+  },
+  {
+    id: 2,
+    title: "Fantastik",
+    books: books.filter((item) => item.catalog_id === 2).length,
+    audiobooks: books.filter(
+      (item) => item.catalog_id === 2 && item.tipe === "audio"
+    ).length,
+    book: books.filter((item) => item.catalog_id === 2 && item.tipe === "file")
+      .length,
+  },
+  {
+    id: 3,
+    title: "Roman",
+    books: books.filter((item) => item.catalog_id === 3).length,
+    audiobooks: books.filter(
+      (item) => item.catalog_id === 3 && item.tipe === "audio"
+    ).length,
+    book: books.filter((item) => item.catalog_id === 3 && item.tipe === "file")
+      .length,
+  },
+  {
+    id: 4,
+    title: "Fantastik",
+    books: books.filter((item) => item.catalog_id === 4).length,
+    audiobooks: books.filter(
+      (item) => item.catalog_id === 4 && item.tipe === "audio"
+    ).length,
+    book: books.filter((item) => item.catalog_id === 4 && item.tipe === "file")
+      .length,
+  },
+];
 
 const port =process.env.PORT || 5001
 
@@ -33,6 +225,22 @@ app.get('/',(req, res)=>{
 app.get('/api/categories',(req, res)=>{
     res.send(categories)
 })
+
+app.get('/api/books',(req, res)=>{
+    res.send(books)
+})
+
+app.get('/api/catologs',(req, res)=>{
+    res.send(catalog)
+})
+
+app.get("/api/categories=:slug/catalog=:id",(req, res)=>{
+    const {id,slug} = req.params;
+    const book = books.filter(
+      (b) => b.category_id === parseInt(slug) && b.catalog_id
+    ===parseInt(id));
+    res.send(book);
+});
 
 app.post('/api/admin/login', cors(),(req, res)=>{
     const {username, password} = req.body;
