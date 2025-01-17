@@ -234,7 +234,7 @@ app.get('/api/catologs',(req, res)=>{
     res.send(catalog)
 })
 
-app.get("/api/categories=:slug/catalog=:id",(req, res)=>{
+app.get("/api/categories/:slug/:id",(req, res)=>{
     const {id,slug} = req.params;
     const book = books.filter(
       (b) => b.category_id === parseInt(slug) && b.catalog_id
