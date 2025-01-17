@@ -169,10 +169,11 @@ const admins=[
     {id: 3, username: 'Zara', seconname:'Rahmanova', password: '1212', token:'789'}
 ]
 
-const catalog = [
+const catalogs = [
   {
     id: 1,
     title: "Sheriyat",
+    categori_id: 1,
     books: books.filter((item) => item.catalog_id === 1).length,
     audiobooks: books.filter(
       (item) => item.catalog_id === 1 && item.tipe === "audio"
@@ -183,6 +184,7 @@ const catalog = [
   {
     id: 2,
     title: "Fantastik",
+    categori_id: 1,
     books: books.filter((item) => item.catalog_id === 2).length,
     audiobooks: books.filter(
       (item) => item.catalog_id === 2 && item.tipe === "audio"
@@ -193,6 +195,7 @@ const catalog = [
   {
     id: 3,
     title: "Roman",
+    categori_id: 2,
     books: books.filter((item) => item.catalog_id === 3).length,
     audiobooks: books.filter(
       (item) => item.catalog_id === 3 && item.tipe === "audio"
@@ -203,6 +206,7 @@ const catalog = [
   {
     id: 4,
     title: "Fantastik",
+    categori_id: 3,
     books: books.filter((item) => item.catalog_id === 4).length,
     audiobooks: books.filter(
       (item) => item.catalog_id === 4 && item.tipe === "audio"
@@ -210,6 +214,17 @@ const catalog = [
     book: books.filter((item) => item.catalog_id === 4 && item.tipe === "file")
       .length,
   },
+  {
+    id: 5,
+    title: "Mashxat",
+    categori_id: 1,
+    books: books.filter((item) => item.catalog_id === 5).length,
+    audiobooks: books.filter(
+      (item) => item.catalog_id === 5 && item.tipe === "audio"
+    ).length,
+    book: books.filter((item) => item.catalog_id === 5 && item.tipe === "file")
+      .length,
+  }
 ];
 
 const port =process.env.PORT || 5001
@@ -230,7 +245,9 @@ app.get('/api/books',(req, res)=>{
     res.send(books)
 })
 
-app.get('/api/catologs',(req, res)=>{
+app.get('/api/catologs/:id',(req, res)=>{
+  const {id} = req.params
+  const catalog = catalogs.filter((c) => c.categori_id === parseInt(id));
     res.send(catalog)
 })
 
