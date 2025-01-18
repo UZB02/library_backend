@@ -7,12 +7,9 @@ app.use(express.json());
 app.use(
   cors({
     origin: "*",
-    // methods: ["GET", "POST", "PUT", "DELETE"],
-    // allowedHeaders: ["Content-Type", "Authorization"],
     credentials:true,
   })
 );
-// app.options("*", cors()); 
 
 
 
@@ -173,9 +170,9 @@ const categories = [
 ];
 
 const admins=[
-    {id: 1, username: 'Muhsinbek', seconname:'Mirzamatov', password: '1212', token:'123'},
-    {id: 2, username: 'Naim', seconname:'Kamalilov', password: '1212', token:'456'},
-    {id: 3, username: 'Zara', seconname:'Rahmanova', password: '1212', token:'789'}
+    {id: 1, username: 'Muhsinbek', seconname:'Mirzamatov', password: '1212', token:''},
+    {id: 2, username: 'Naim', seconname:'Kamalilov', password: '1212', token:''},
+    {id: 3, username: 'Zara', seconname:'Rahmanova', password: '1212', token:''}
 ]
 
 const catalogs = [
@@ -267,6 +264,20 @@ app.get("/api/categories/:slug/:id",(req, res)=>{
     ===parseInt(id));
     res.send(book);
 });
+
+app.get('/api/admins', (req, res)=>{
+  res.send(admins)
+})
+
+app.get('/api/admin/:token', (req, res)=>{
+  const {token} = req.params;
+  const admin = admins.find(a=>a.token===token);
+  if(admin){
+    res.send(admin)
+  }else{
+    res.status(401).json({message: 'Token not found'})
+  }
+})
 
 app.post('/api/admin/login', cors(),(req, res)=>{
     const {username, password} = req.body;
