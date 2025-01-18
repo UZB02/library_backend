@@ -11,7 +11,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
+app.options("*", cors()); // OPTIONS so'rovlariga ruxsat berish
 // app.use(cors());
 
 
