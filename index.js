@@ -6,13 +6,14 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "https://library-admin-omega.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: "*",
+    // methods: ["GET", "POST", "PUT", "DELETE"],
+    // allowedHeaders: ["Content-Type", "Authorization"],
+    credentials:true,
   })
 );
-app.options("*", cors()); // OPTIONS so'rovlariga ruxsat berish
-// app.use(cors());
+// app.options("*", cors()); 
+
 
 
 const books = [
